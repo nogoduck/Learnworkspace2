@@ -4,18 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ad",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^17.0.18",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "style-loader": "^3.2.1",
+    "ts-node": "^10.2.0",
+    "webpack": "^5.50.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/node": "^16.6.1",
+    "@types/webpack": "^5.28.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "webpack-cli": "^4.8.0"
   }
 }

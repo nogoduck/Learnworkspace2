@@ -1,6 +1,6 @@
 {
-  'compilerOptions': {
-    'esModuleInterop': true,
+  "compilerOption": {
+    "esModuleInterop": true,
     "sourceMap": true,
     "lib": ["ES2020", "DOM"],
     "jsx": "react",
@@ -13,5 +13,9 @@
     "paths": {
       "@null/*":["null/*"]
     }
+  },
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   }
 }
