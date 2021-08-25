@@ -39,7 +39,7 @@ def bfs(a, b):
 N =  int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
 checkArr = [[0 for _ in range(N)] for _ in range(N)]
-shark_size = 0
+shark_size = 2
 move_num = 0
 
 sX, sY = startIndex()
