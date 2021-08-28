@@ -7,12 +7,19 @@ sys.stdin=open("input.txt", "r")
 # a, b, c = map(int, input().split())
 n =  int(input())
 arr = list(map(int, input().split()))
-avg = round(sum(arr) / n)
 
 # python의 반올림은 타 언어와 다르게 동작한다
 # ex) 2.5 >> 2.0, 2.6 >> 3.0
 # print(round(20.5))
 # print(round(20.6))
+# ++ 추가설명)
+# 흔히 반올림은 round_half_up 방식을 사용한다, 5이상은 올림
+# 파이썬은 round_helf_even 방식을 사용한다, 4.5000 은 4로 처리되고 4.5001은 5로 처리된다, 5.5000은 6으로 처리
+# 정확하게 5 이상일때는 올림을 진행한다 (짝수쪽으로 근삿값을 만들어서 처리한다)
+
+# 해결방법 : round를 사용하지 않고 0.5를 더해주고 int형으로 변환한다
+# avg = round(sum(arr) / n) <- 기존의 방법
+avg = int((sum(arr) / n) + 0.5)
 
 # 파이썬에서는 정수가 플랫폼에 따라 2 31-1 또는 2 63-1 인 값을 전달하면 고정 크기 int표현에서 가변 폭 long표현 으로 자동 전환 됩니다.
 # 아래 문제풀이에서는 최대값을 2의 31제곱이라 가정하고 진행함
