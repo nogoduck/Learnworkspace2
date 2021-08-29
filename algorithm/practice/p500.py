@@ -2,6 +2,10 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
+def recursion(x):
+    if x > 0:
+        recursion(x - 1)
+        print(x, end=" ")
 
 
 
@@ -12,4 +16,4 @@ sys.stdin=open("input.txt", "r")
 # 즉 직접 실행한 경우에만 if문 내의 코드를 수행하게 됩니다.
 if __name__ == '__main__':
     n = int(input())
-    dfs(n)
+    recursion(n)
