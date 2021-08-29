@@ -15,7 +15,7 @@ def digit_sum(n):
     #     n //= 10
     #     print(sum, n)
 
-    return sum
+    return sum  
 
 
 n = int(input())
@@ -29,5 +29,3 @@ for v in arr:
         res = v
 
 print(res)
-
-print(2 ** 31)
