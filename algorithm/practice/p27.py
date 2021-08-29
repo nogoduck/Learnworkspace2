@@ -3,8 +3,7 @@
 import sys
 # sys.stdin=open("input.txt", "r")
 
-# n = int(input())
-n = 20
+n = int(input())
 arr = [True] * (n + 1)
 
 # 0과 1은 소수가 아니기 때문에 미리 처리해준다

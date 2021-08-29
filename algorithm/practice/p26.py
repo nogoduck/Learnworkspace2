@@ -1,6 +1,6 @@
 # 자릿수의 합
 import sys
-sys.stdin=open("input.txt", "r")
+# sys.stdin=open("input.txt", "r")
 
 def digit_sum(n):
     sum = 0

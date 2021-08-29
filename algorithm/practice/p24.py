@@ -2,9 +2,8 @@
 import sys
 
 # 파일 읽는 옵션 "r, rt" 는 동일하다 기본적으로 "r"을 사용하면 text를 읽기 때문이다.
-sys.stdin=open("input.txt", "r")
+# sys.stdin=open("input.txt", "r")
 
-# a, b, c = map(int, input().split())
 n =  int(input())
 arr = list(map(int, input().split()))
 
@@ -20,6 +19,8 @@ arr = list(map(int, input().split()))
 # 해결방법 : round를 사용하지 않고 0.5를 더해주고 int형으로 변환한다
 # avg = round(sum(arr) / n) <- 기존의 방법
 avg = int((sum(arr) / n) + 0.5)
+
+
 
 # 파이썬에서는 정수가 플랫폼에 따라 2 31-1 또는 2 63-1 인 값을 전달하면 고정 크기 int표현에서 가변 폭 long표현 으로 자동 전환 됩니다.
 # 아래 문제풀이에서는 최대값을 2의 31제곱이라 가정하고 진행함
@@ -40,9 +41,7 @@ for i, v in enumerate(arr):
             resIdx = i + 1
             resScore = v
 
-
-
-print(resIdx, resScore)
+print(avg, resIdx)
         
 
 

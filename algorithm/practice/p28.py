@@ -1,11 +1,10 @@
 # 뒤집은 소수
 
 import sys
-sys.stdin=open("input.txt", "r")
+# sys.stdin=open("input.txt", "r")
 
 n = int(input())
 arr  = list(map(int, input().split()))
-print(n, arr)
 
 def isPrime(x):
     x = int(x)
@@ -40,14 +39,6 @@ def reverse(x):
 for v in arr:
     reversed = reverse(v)
 
-    print(isPrime(reversed))
     if isPrime(reversed):
         print(reversed)
 
-
-
-
-
-
-
-    
