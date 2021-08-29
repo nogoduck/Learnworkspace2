@@ -1,4 +1,4 @@
-# 점수 계산
+# 회문 문자열 검사
 
 import sys
 sys.stdin=open("input.txt", "r")
