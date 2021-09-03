@@ -4,7 +4,7 @@ sys.stdin=open("input.txt", "r")
 
 def dfs(x):
     if not x:
-        return
+        return  
 
     dfs(x // 2)
     print(x % 2, end="")
