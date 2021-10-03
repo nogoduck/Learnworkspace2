@@ -4,8 +4,12 @@ sys.stdin=open("input.txt", "r")
 input = sys.stdin.readline
 
 def dfs(L):
-    if L == m:
-        pass
+    global cnt
+    if L >= m:
+        for i in res:
+            print(i, end=" ")
+        print()
+        cnt += 1
     else:
         for i in range(1, n + 1):
             res[L] = i
@@ -18,4 +22,4 @@ if __name__ == '__main__':
     res = [0] * m
     cnt = 0
     dfs(0)
-    print(cnt)
+    print(cnt) 
