@@ -5,8 +5,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const nunjucks = require("nunjucks");
 const dotenv = require("dotenv");
+const ColorHash = require("color-hash").default;
 
 dotenv.config();
+const connect = require("./schemas");
 const webSocket = require("./socket");
 const indexRouter = require("./routes");
 
@@ -18,6 +20,8 @@ nunjucks.configure("views", {
   watch: true,
 });
 
+//mongoDB Connect
+connect();
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -34,6 +38,14 @@ app.use(
     },
   })
 );
+
+app.use((req, res, next) => {
+  if (!req.session.color) {
+    const colorHash = new ColorHash();
+    req.session.color = colorHash.hex(req.sessionID);
+  }
+  next();
+});
 
 app.use("/", indexRouter);
 
@@ -54,4 +66,4 @@ const server = app.listen(app.get("port"), () => {
   console.log(app.get("port"), "번 포트에서 대기중");
 });
 
-webSocket(server);
+webSocket(server, app);

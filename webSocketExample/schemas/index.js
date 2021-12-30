@@ -19,3 +19,5 @@ const connect = () => {
       console.log("MongoDB 연결 실패 ", err);
     });
 };
+
+module.exports = connect;
