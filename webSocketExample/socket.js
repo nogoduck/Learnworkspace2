@@ -28,5 +28,11 @@ module.exports = (server) => {
       if (ws.readyState === ws.OPEN)
         ws.send("서버에서 클라이언트로 전송된 메시지");
     }, 2000);
+    json.stringify;
+    //채팅방을 구성할 땐 socket.io 모듈을 사용하는게 편리하다
+    //e.data 또는 소켓으로 통신하는 모든 문자는 문자열로만 통신을 하기 때문에
+    //JSON으로 보내기 위해선 json.stringify를 사용하여 보내고 받는 쪽에선
+    //json.parse를 사용하여 다시 객체로 만들어준다
+    //socket.io도 동일하게 적용해야하지만 모듈에서 자동으로 처리해준다. (특정사람, 특정그룹에 보내는 구조를 사용할 때 편리함)
   });
 };
