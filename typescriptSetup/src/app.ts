@@ -1,10 +1,13 @@
 import * as express from "express";
-import { Cat, CatType } from "./app.model";
+import catsRouter from "./cats/cats.route";
 
 const app: express.Express = express();
 const port: number = 8000;
 
+app.use(express.json());
+
 //app.use를 사용하면 미들웨어를 전체적으로 관리 (순서 중요)
+//logging middleware
 app.use(
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
     console.log(req.rawHeaders[1]);
@@ -12,31 +15,10 @@ app.use(
   }
 );
 
-//특정 라우터만 미들웨어를 추가하기 위해선 app.get과 next 파라미터를 추가해준다.
-app.get(
-  "/cats/som",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.log("this is som middleware");
-    next();
-  }
-);
-
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send({ cats: Cat });
-});
-
-app.get(
-  "/cats/blue",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.send({ blue: Cat[0] });
-  }
-);
-
-app.get("/cats/som", (req: express.Request, res: express.Response) => {
-  res.send({ som: Cat[1] });
-});
+app.use(catsRouter);
 
 //일치하는 경로가 없을때 처리할 라우터
+//404 middleware
 app.use(
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
     console.log("this is error middleware");
