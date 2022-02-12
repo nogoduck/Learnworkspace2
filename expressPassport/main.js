@@ -25,9 +25,17 @@ app.use(
   })
 );
 
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const passport = require("./passport")(app);
 
+app.get("/", (req, res, next) => {
+  console.log("req.user >> ", req.user);
+
+  res.send(`로그인 성공 [O]`);
+});
+
+// serialize에서 cb의 두번쨰 인자로 준 데이터는
+// req.user라는 객체로 전달이 된다.
+// passport를 사용하기 때문에 user라는 객체를 주입해준다.
 app.post(
   "/login/process",
   passport.authenticate("local", {
@@ -36,17 +44,29 @@ app.post(
     failureMessage: true,
   }),
   function (req, res) {
+    console.log(res.user);
     res.redirect("/~" + req.user.username);
   }
 );
 
-app.get("/", (req, res, next) => {
-  console.log("req.session >> ", req.session);
+app.get("/login", (req, res, next) => {
+  console.log("req.session [login] >> ", req.session);
 
-  if (!req.session.num) req.session.num = 1;
-  else req.session.num += 1;
+  res.send(`로그인 실패 [X]`);
+});
 
-  res.send(`View: ${req.session.num}`);
+app.get("/logout", (req, res) => {
+  console.log("logout...");
+  req.logout();
+  // req.session.destroy((err) => {
+  //   res.redirect("/");
+  // });
+
+  req.session.save(() => {
+    res.redirect("/");
+  });
+
+  // res.send(`로그아웃`);
 });
 
 app.listen(3000, () => {
