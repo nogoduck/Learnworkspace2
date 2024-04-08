@@ -1,0 +1,130 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>오늘 할 일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        font-family: "Noto Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    h1 {
+        color: blue;
+        text-decoration: underline;
+    }
+
+    section {
+        display: flex;
+        padding: 0 1em;
+        gap: 1em;
+
+        article {
+            flex: 1;
+
+            dl {
+                border: 1px solid #9C9C9C;
+                border-radius: 4px;
+                padding: 2em;
+                text-align: start;
+
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                dt {
+                    font-weight: 800;
+                }
+
+                dd {
+                    padding: 0;
+                    margin: 0;
+                }
+
+                button {
+                    padding: 0;
+                    width: 120px;
+                }
+            }
+        }
+
+        #input-container {
+            display: flex;
+            height: calc(100vh - 5em);
+            justify-content: center;
+            align-items: center;
+        }
+    }
+</style>
+<body>
+<h1>오늘 할 일</h1>
+<section>
+    <article id="item">
+        <dl>
+            <dt>고양이 밥주기</dt>
+            <dd>30알만 주기</dd>
+            <button>완료</button>
+        </dl>
+        <dl>
+            <dt>공룡 밥주기</dt>
+            <dd>트리케라톱스는 다이어트중이니까 절반만 주기</dd>
+            <button>완료</button>
+        </dl>
+    </article>
+    <article id="input-container">
+        <form id='input-form'>
+            <input type="text" placeholder="할 일" id="title">
+            <input type="text" placeholder="세부내용" id="desc">
+            <button type="submit">추가하기</button>
+        </form>
+    </article>
+</section>
+</body>
+<script>
+    const form = document.getElementById('input-form');
+    const items = document.getElementById('item');
+    const title = document.getElementById('title');
+    const desc = document.getElementById('desc');
+    const onSubmit = (e) => {
+        e.preventDefault()
+        addItem();
+    }
+
+    const addItem = () => {
+        items.insertAdjacentHTML('beforeend',
+            `<dl>
+                <dt>${title.value}</dt>
+                <dd>${desc.value}</dd>
+                <button onclick="removeItem(this)">완료</button>
+            </dl>`
+        );
+
+        title.value = "";
+        desc.value = "";
+        title.focus();
+    }
+
+    const removeItem = (btn) => {
+        const dl = btn.parentElement;
+        items.removeChild(dl);
+    }
+
+    form.addEventListener('submit', onSubmit)
+
+    /* 2024.03.29 yujin lee: 더미데이터 완료 버튼 동작 로직 */
+    const dummyBtn = document.querySelectorAll('#item button');
+    dummyBtn.forEach(button => {
+        button.addEventListener('click', () => {
+            removeItem(button);
+        });
+    });
+</script>
+</html>
