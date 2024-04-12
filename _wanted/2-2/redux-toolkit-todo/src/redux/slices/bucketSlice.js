@@ -5,13 +5,15 @@ import { randomColor, randomDegree } from "../../utils/random";
 /*
    Q1. UUID를 사용하는 것이 적당할지, Sequence ID 를 사용할지 고민된다.
    본 예제에서는 DB에 저장하는것이 아니기 때문에 Sequence ID를 사용해도 상관없을것 같다.
-   A1.
+   A1. 가급적이면 uuid 를 쓰는게 좋다.
+   // +베스쳔 서버
 
-   Q2. bucketList 안의 객체를 유효성검사 할 수 있을까?
-   A2.
+
+   Q2. bucketList 안의 객체를 유효성검사 할 수 있을까? (TS를 써야만 가능한가?)
+   A2. TS를 쓰는게 좋다.  JS에서는 프로토타입 사용했었다(과거), 모델만들기.
 
    Q3. 변수명에 대한 의문 복수의 항목을 표현할 때(To do List는 복수 표현이 따로 없어 적절한 예제는 아님) bucketList 라고 표현하기도 하고  또는 bucketArr, buckets 라고 표현하기로 하는데 현업에서는 어떠한 변수명을 더 선호하는가? (필자는 개인적으로 buckets 선호)
-   A3.
+   A3. 회사 컨벤션 따르기.
 
  */
 const initialState = {
@@ -108,16 +110,18 @@ export const bucketSlice = createSlice({
         (bucket) => bucket._id === action.payload._id,
       );
 
+      console.log("state >> ", state);
+
       // Q5. 리덕스에서 생성한 객체는 복사를 못하나요?
       // A5.
-      // const newBucketList = [...state.bucketList];
-      // console.log("newBucketList >> ", newBucketList);
-      //
-      // state.bucketList[index] = {
-      //   title: action.payload.title,
-      //   desc: action.payload.desc,
-      //   // _id: uuidv4(),
-      // };
+      const newBucketList = [...state.bucketList];
+      console.log("newBucketList >> ", newBucketList);
+
+      state.bucketList[index] = {
+        title: action.payload.title,
+        desc: action.payload.desc,
+        // _id: uuidv4(),
+      };
 
       // immer를 검색하서 찾은 상태 변경방법.
       state.bucketList[index].title = action.payload.title;

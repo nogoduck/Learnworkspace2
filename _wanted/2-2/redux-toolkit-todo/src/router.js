@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     path: "/detail/:bucketId",
     element: (
       <Layout>
-        <Detail />{" "}
+        <Detail />
       </Layout>
     ),
   },

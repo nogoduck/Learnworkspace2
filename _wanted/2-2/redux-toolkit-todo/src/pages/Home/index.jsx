@@ -18,7 +18,7 @@ import { IoIosAdd } from "react-icons/io";
 import Modal from "../../components/Modal";
 
 // Q1. 현업에서는 함수 선언식과 표현식중 무엇을 더 선호하는가?
-// A1.
+// A1. 팀마다 다름
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,13 +36,13 @@ const Home = () => {
   const [deleteItemName, setDeleteItemName] = useState("");
 
   // Q1. 컴포넌트는 어디까지 쪼개야 하는가? 너무 많이 나누면 가독성이나 관리측면에서 더 많은 시간이 소요될 것 같고 너무 덜 쪼개면 추후에 코드수 증가로 추가로 컴포넌트를 나눠 관리하기 힘들것 같다.
-  // A1.
+  // A1. 1컴포넌트 1기능
 
   // Q2. onClick, onSubmit VS handleClick, handleSubmit 어떤 경우에 쓰이는거지?
   //    내가 onClick과 handle을 구분해서 쓰는 기준은 이 로직이 사용자의 액션에 의해 동작하는지 여부에 따라 작성했다.
   //    블로그 참고 => on 접두사가 붙은 경우, 이 Prop에 실제 이벤트가 연결되어 있다는 걸 뜻하고,
   //              handle 접두사가 붙은 경우, 이벤트가 발생했을 때 호출되는 실제 Function을 의미합니다.
-  // A2.
+  // A2. 내부컨벤션 따르기 +airbnb 팀 컨벤션 참고
 
   const onClickSave = () => {
     if (!title.trim().length) return;

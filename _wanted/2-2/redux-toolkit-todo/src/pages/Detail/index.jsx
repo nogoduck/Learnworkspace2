@@ -10,9 +10,7 @@ import { IoIosArrowBack } from "react-icons/io";
 const Detail = () => {
   const { bucketId } = useParams();
   const [bucket, setBucket] = useState(null);
-  const [bucketList, setBucketList] = useState(
-    useSelector((state) => state.bucket.bucketList),
-  );
+  const bucketList = useSelector((state) => state.bucket.bucketList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
